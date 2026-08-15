@@ -1,0 +1,10 @@
+# This file is sourced by bash for login shells.
+if [[ -f ~/.bashrc ]] ; then
+	. ~/.bashrc
+fi
+
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
+if [ "$(tty)" = "/dev/tty1" ]; then
+	exec {{LAUNCH_CMD}}
+fi

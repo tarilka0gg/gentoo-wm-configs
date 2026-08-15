@@ -1,0 +1,138 @@
+// Niri configuration — clean default for a fresh install, paired with Noctalia as the
+// shell/bar. Wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
+
+prefer-no-csd
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+input {
+    keyboard {
+        xkb {}
+        repeat-delay 250
+        repeat-rate 50
+    }
+    touchpad {
+        tap
+    }
+    mouse {
+        accel-profile "flat"
+    }
+    mod-key "Super"
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+cursor {
+    xcursor-size 24
+    hide-when-typing
+}
+
+layout {
+    gaps 10
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width {
+        proportion 0.5
+    }
+
+    border {
+        width 2
+        active-color "#7aa2f7"
+        inactive-color "#565f89"
+    }
+
+    focus-ring {
+        off
+    }
+
+    struts { }
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+environment {
+    XDG_CURRENT_DESKTOP "niri"
+    QT_QPA_PLATFORM "wayland"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "noctalia"
+
+binds {
+    Mod+Tab repeat=false { toggle-overview; }
+    Mod+Shift+E { quit; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // Noctalia panels
+    Mod+Space repeat=false { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+S { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+    Mod+Comma { spawn "noctalia" "msg" "settings-toggle"; }
+    Ctrl+Alt+T repeat=false { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
+    Mod+Alt+L allow-when-locked=true { spawn "noctalia" "msg" "session" "lock"; }
+    Mod+Shift+S { spawn "noctalia" "msg" "screenshot-region"; }
+
+    // Applications
+    Mod+T { spawn "ghostty"; }
+    Mod+Return { spawn "ghostty"; }
+    Mod+Q repeat=false { close-window; }
+    Mod+D { maximize-column; }
+    Mod+F { fullscreen-window; }
+    Mod+A { toggle-window-floating; }
+
+    // Focus
+    Mod+Left { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up { focus-window-up; }
+    Mod+Down { focus-window-down; }
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+
+    // Move windows
+    Mod+Shift+Left { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Up { move-window-up; }
+    Mod+Shift+Down { move-window-down; }
+
+    // Workspaces
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+
+    // Screenshots
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // Hardware keys, via Noctalia IPC
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
+    XF86AudioMute allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia" "msg" "brightness-up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
+    XF86AudioPlay { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioNext { spawn "noctalia" "msg" "media" "next"; }
+    XF86AudioPrev { spawn "noctalia" "msg" "media" "previous"; }
+}

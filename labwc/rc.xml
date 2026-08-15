@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- Labwc configuration — clean default for a fresh install, paired with Noctalia as
+     the shell/bar. Wiki: https://labwc.github.io/ -->
+<labwc_config>
+  <core>
+    <gap>4</gap>
+  </core>
+  <theme>
+    <cornerRadius>8</cornerRadius>
+  </theme>
+  <keyboard>
+    <default />
+    <keybind key="W-Return"><action name="Execute" command="ghostty" /></keybind>
+    <keybind key="W-t"><action name="Execute" command="ghostty" /></keybind>
+    <keybind key="W-q"><action name="Close" /></keybind>
+    <keybind key="W-S-e"><action name="Exit" /></keybind>
+    <keybind key="W-f"><action name="ToggleFullscreen" /></keybind>
+    <keybind key="W-d"><action name="ToggleFloating" /></keybind>
+
+    <!-- Noctalia panels -->
+    <keybind key="W-space"><action name="Execute" command="noctalia msg panel-toggle control-center" /></keybind>
+    <keybind key="W-s"><action name="Execute" command="noctalia msg panel-toggle launcher" /></keybind>
+    <keybind key="W-v"><action name="Execute" command="noctalia msg panel-toggle clipboard" /></keybind>
+    <keybind key="W-comma"><action name="Execute" command="noctalia msg settings-toggle" /></keybind>
+    <keybind key="W-A-l"><action name="Execute" command="noctalia msg session lock" /></keybind>
+    <keybind key="W-S-s"><action name="Execute" command="noctalia msg screenshot-region" /></keybind>
+
+    <!-- Focus -->
+    <keybind key="W-Left"><action name="GoToDesktop" to="left" /></keybind>
+    <keybind key="W-Right"><action name="GoToDesktop" to="right" /></keybind>
+
+    <!-- Hardware keys, via Noctalia IPC -->
+    <keybind key="XF86AudioRaiseVolume"><action name="Execute" command="noctalia msg volume-up" /></keybind>
+    <keybind key="XF86AudioLowerVolume"><action name="Execute" command="noctalia msg volume-down" /></keybind>
+    <keybind key="XF86AudioMute"><action name="Execute" command="noctalia msg volume-mute" /></keybind>
+    <keybind key="XF86MonBrightnessUp"><action name="Execute" command="noctalia msg brightness-up" /></keybind>
+    <keybind key="XF86MonBrightnessDown"><action name="Execute" command="noctalia msg brightness-down" /></keybind>
+    <keybind key="XF86AudioPlay"><action name="Execute" command="noctalia msg media toggle" /></keybind>
+    <keybind key="XF86AudioNext"><action name="Execute" command="noctalia msg media next" /></keybind>
+    <keybind key="XF86AudioPrev"><action name="Execute" command="noctalia msg media previous" /></keybind>
+  </keyboard>
+</labwc_config>

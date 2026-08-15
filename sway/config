@@ -1,0 +1,71 @@
+# Sway configuration — clean default for a fresh install, paired with Noctalia as the
+# shell/bar. Wiki: https://github.com/swaywm/sway/wiki
+
+set $mod Mod4
+
+exec xwayland-satellite
+exec noctalia
+
+input type:keyboard {
+    xkb_layout us
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+gaps inner 4
+gaps outer 4
+default_border pixel 2
+client.focused #7aa2f7 #7aa2f7 #ffffff #7aa2f7 #7aa2f7
+client.unfocused #565f89 #565f89 #ffffff #565f89 #565f89
+
+bindsym $mod+Return exec ghostty
+bindsym $mod+t exec ghostty
+bindsym $mod+q kill
+bindsym $mod+Shift+e exit
+bindsym $mod+f fullscreen
+bindsym $mod+d floating toggle
+
+# Noctalia panels
+bindsym $mod+space exec noctalia msg panel-toggle control-center
+bindsym $mod+s exec noctalia msg panel-toggle launcher
+bindsym $mod+v exec noctalia msg panel-toggle clipboard
+bindsym $mod+comma exec noctalia msg settings-toggle
+bindsym $mod+alt+l exec noctalia msg session lock
+bindsym $mod+Shift+s exec noctalia msg screenshot-region
+
+# Focus
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Workspaces
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+
+# Hardware keys, via Noctalia IPC
+bindsym --locked XF86AudioRaiseVolume exec noctalia msg volume-up
+bindsym --locked XF86AudioLowerVolume exec noctalia msg volume-down
+bindsym --locked XF86AudioMute exec noctalia msg volume-mute
+bindsym --locked XF86MonBrightnessUp exec noctalia msg brightness-up
+bindsym --locked XF86MonBrightnessDown exec noctalia msg brightness-down
+bindsym XF86AudioPlay exec noctalia msg media toggle
+bindsym XF86AudioNext exec noctalia msg media next
+bindsym XF86AudioPrev exec noctalia msg media previous
+
+include /etc/sway/config.d/*
