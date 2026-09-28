@@ -29,6 +29,46 @@ at the top of `dwl/config.h`).
 `noctalia/config.toml` is the shared shell config used by every WM/compositor
 here — same file regardless of which one is running under it.
 
+## Compositors
+
+| | Kind | Config format |
+|---|---|---|
+| **niri** | scrollable-tiling (columns, no traditional workspaces grid) | KDL |
+| **Hyprland** | animated tiling, most third-party plugin/ecosystem support | text |
+| **Sway** | i3-compatible tiling | text |
+| **Scroll** | Sway fork, single PaperWM-style scrolling layout (sway-syntax-compatible + its own binds) | text |
+| **Labwc** | stacking WM, Openbox-style | XML |
+| **MangoWC** | tiling | text |
+| **Triad** | layout manager running *inside* River (Nim) — `triad session` starts River itself, no separate river config needed | KDL |
+| **dwl** | suckless-style — config is a C header compiled into the binary, not read at runtime | C header |
+
+## Keybindings
+
+Same scheme across every compositor here *except* `dwl`, which keeps
+suckless/dwm's own stock bindings (`Mod+P` to spawn, `Mod+J`/`K` to cycle
+focus, `Mod+I`/`D` to grow/shrink master count, `Mod+H`/`L` to adjust the
+split ratio) rather than being reconfigured to match — see `dwl/config.h`
+directly for its actual binds. `Mod` = Super.
+
+| Bind | Action |
+|---|---|
+| `Mod+Return` / `Mod+T` | open terminal (`ghostty`) |
+| `Mod+Q` | close focused window |
+| `Mod+F` | fullscreen |
+| `Mod+D` / `Mod+A` | maximize column (niri) / toggle floating (others) |
+| `Mod+Shift+E` | quit compositor |
+| `Mod+←↓↑→` or `Mod+H/J/K/L` | move focus |
+| `Mod+Shift+←↓↑→` | move window/column |
+| `Mod+1`…`5` | switch workspace |
+| `Mod+Shift+1`…`5` | move window to workspace |
+| `Print` / `Mod+Shift+S` | screenshot (full) / region (via Noctalia) |
+| `Mod+Space` | Noctalia control center |
+| `Mod+S` | Noctalia launcher |
+| `Mod+V` | Noctalia clipboard |
+| `Mod+Comma` | Noctalia settings |
+| `Mod+Alt+L` | lock session |
+| `XF86Audio*` / `XF86MonBrightness*` | volume/brightness/media — routed through `noctalia msg ...` so the OSD stays in sync, not handled by the compositor directly |
+
 ## Install
 
 Pick one, e.g. niri:
