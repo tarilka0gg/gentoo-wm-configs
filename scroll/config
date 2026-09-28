@@ -1,0 +1,84 @@
+# Scroll configuration — clean default for a fresh install, paired with Noctalia as
+# the shell/bar. Scroll is a Sway fork with a single PaperWM-style scrolling layout;
+# this file is sway-syntax-compatible, plus the scroll-specific binds at the bottom.
+# Wiki: https://github.com/dawsers/scroll, `man 5 scroll`
+
+set $mod Mod4
+
+exec xwayland-satellite
+exec noctalia
+
+input type:keyboard {
+    xkb_layout us
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+default_border pixel 2
+gaps inner 4
+gaps outer 4
+client.focused #7aa2f7 #7aa2f7 #ffffff #7aa2f7 #7aa2f7
+client.unfocused #565f89 #565f89 #ffffff #565f89 #565f89
+
+# Scroll's one scrolling layout, sized like every other preset's default
+# column width in this repo.
+layout_default_width 0.5
+layout_default_height 1.0
+
+bindsym $mod+Return exec ghostty
+bindsym $mod+t exec ghostty
+bindsym $mod+q kill
+bindsym $mod+Shift+e exec scrollmsg exit
+bindsym $mod+f fullscreen
+bindsym $mod+d floating toggle
+
+# Noctalia panels
+bindsym $mod+space exec noctalia msg panel-toggle control-center
+bindsym $mod+s exec noctalia msg panel-toggle launcher
+bindsym $mod+v exec noctalia msg panel-toggle clipboard
+bindsym $mod+comma exec noctalia msg settings-toggle
+bindsym $mod+alt+l exec noctalia msg session-lock
+bindsym $mod+Shift+s exec noctalia msg screenshot-region
+
+# Focus
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
+
+# Scroll's own extras: horizontal-scrolling overview (its signature feature,
+# same key niri uses for its overview) and the scroll-length toggle.
+bindsym --no-repeat $mod+Tab scale_workspace overview
+bindsym $mod+minus cycle_size h prev
+bindsym $mod+equal cycle_size h next
+
+# Hardware keys, via Noctalia IPC
+bindsym --locked XF86AudioRaiseVolume exec noctalia msg volume-up
+bindsym --locked XF86AudioLowerVolume exec noctalia msg volume-down
+bindsym --locked XF86AudioMute exec noctalia msg volume-mute
+bindsym --locked XF86MonBrightnessUp exec noctalia msg brightness-up
+bindsym --locked XF86MonBrightnessDown exec noctalia msg brightness-down
+bindsym XF86AudioPlay exec noctalia msg media-toggle
+bindsym XF86AudioNext exec noctalia msg media-next
+bindsym XF86AudioPrev exec noctalia msg media-previous
+
+include /etc/scroll/config.d/*

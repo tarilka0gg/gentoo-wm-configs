@@ -1,0 +1,110 @@
+// Triad configuration — clean default for a fresh install, paired with Noctalia as
+// the shell/bar. Triad is a layout manager running inside River (built in Nim);
+// there's no separate river/init needed — `triad session` starts River itself.
+// Docs: https://triadwm.org/
+
+layout {
+    gaps 10
+    center-focused-column "never"
+    default-column-width { proportion 0.5; }
+
+    border {
+        width 2
+        active-color "#7aa2f7"
+        inactive-color "#565f89"
+    }
+}
+
+input {
+    keyboard {
+        repeat-delay 250
+        repeat-rate 50
+        xkb {}
+    }
+    mouse {
+        accel-profile "flat"
+    }
+}
+
+cursor {
+    size 24
+}
+
+hotkey-overlay {
+    skip-at-startup #true
+}
+
+// Triad can launch and health-check the shell itself; this still runs
+// alongside the manual `noctalia msg panel-toggle ...` binds below, which
+// toggle individual panels the same way every other preset in this repo
+// does — the shells{} block here only replaces `spawn-at-startup`.
+shells {
+    enabled #true
+    active "noctalia"
+    profile "noctalia" {
+        launch "noctalia"
+        stop "pkill" "-x" "noctalia"
+        niri-compat #true
+    }
+}
+
+spawn-at-startup "xwayland-satellite"
+
+bindings {
+    bind "Super+Shift+e" "exit-session"
+
+    // Noctalia panels
+    bind "Super+Space" "spawn noctalia msg panel-toggle control-center"
+    bind "Super+s" "spawn noctalia msg panel-toggle launcher"
+    bind "Super+v" "spawn noctalia msg panel-toggle clipboard"
+    bind "Super+comma" "spawn noctalia msg settings-toggle"
+    bind "Ctrl+Alt+t" "spawn noctalia msg panel-toggle wallpaper"
+    bind "Super+Alt+l" "spawn noctalia msg session-lock" allow-inhibiting=#false
+    bind "Super+Shift+s" "spawn noctalia msg screenshot-region"
+
+    // Applications
+    bind "Super+t" "spawn ghostty"
+    bind "Super+Return" "spawn ghostty"
+    bind "Super+q" "close-window"
+    bind "Super+f" "maximize-window-to-edges"
+    bind "Super+Shift+f" "fullscreen-window"
+    bind "Super+a" "toggle-floating"
+
+    // Focus (arrows mirror h/j/k/l)
+    bind "Super+h" "focus-left"
+    bind "Super+j" "focus-down"
+    bind "Super+k" "focus-up"
+    bind "Super+l" "focus-right"
+
+    // Move windows
+    bind "Super+Shift+h" "move-window-left"
+    bind "Super+Shift+j" "move-window-down"
+    bind "Super+Shift+k" "move-window-up"
+    bind "Super+Shift+l" "move-window-right"
+
+    // Workspaces
+    bind "Super+1" "focus-workspace 1"
+    bind "Super+2" "focus-workspace 2"
+    bind "Super+3" "focus-workspace 3"
+    bind "Super+4" "focus-workspace 4"
+    bind "Super+5" "focus-workspace 5"
+    bind "Super+Ctrl+1" "move-to-workspace 1"
+    bind "Super+Ctrl+2" "move-to-workspace 2"
+    bind "Super+Ctrl+3" "move-to-workspace 3"
+    bind "Super+Ctrl+4" "move-to-workspace 4"
+    bind "Super+Ctrl+5" "move-to-workspace 5"
+
+    // Screenshots (Triad's own, independent of Noctalia's region-screenshot bind above)
+    bind "Print" "screenshot"
+    bind "Alt+Print" "screenshot-window"
+
+    // Hardware keys, via Noctalia IPC
+    bind "XF86AudioRaiseVolume" "spawn noctalia msg volume-up" allow-inhibiting=#false
+    bind "XF86AudioLowerVolume" "spawn noctalia msg volume-down" allow-inhibiting=#false
+    bind "XF86AudioMute" "spawn noctalia msg volume-mute" allow-inhibiting=#false
+    bind "XF86MonBrightnessUp" "spawn noctalia msg brightness-up" allow-inhibiting=#false
+    bind "XF86MonBrightnessDown" "spawn noctalia msg brightness-down" allow-inhibiting=#false
+    bind "XF86AudioPlay" "spawn noctalia msg media-toggle"
+    bind "XF86AudioNext" "spawn noctalia msg media-next"
+    bind "XF86AudioPrev" "spawn noctalia msg media-previous"
+}
