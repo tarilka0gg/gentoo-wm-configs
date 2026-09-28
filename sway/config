@@ -33,7 +33,7 @@ bindsym $mod+space exec noctalia msg panel-toggle control-center
 bindsym $mod+s exec noctalia msg panel-toggle launcher
 bindsym $mod+v exec noctalia msg panel-toggle clipboard
 bindsym $mod+comma exec noctalia msg settings-toggle
-bindsym $mod+alt+l exec noctalia msg session lock
+bindsym $mod+alt+l exec noctalia msg session-lock
 bindsym $mod+Shift+s exec noctalia msg screenshot-region
 
 # Focus
@@ -64,8 +64,8 @@ bindsym --locked XF86AudioLowerVolume exec noctalia msg volume-down
 bindsym --locked XF86AudioMute exec noctalia msg volume-mute
 bindsym --locked XF86MonBrightnessUp exec noctalia msg brightness-up
 bindsym --locked XF86MonBrightnessDown exec noctalia msg brightness-down
-bindsym XF86AudioPlay exec noctalia msg media toggle
-bindsym XF86AudioNext exec noctalia msg media next
-bindsym XF86AudioPrev exec noctalia msg media previous
+bindsym XF86AudioPlay exec noctalia msg media-toggle
+bindsym XF86AudioNext exec noctalia msg media-next
+bindsym XF86AudioPrev exec noctalia msg media-previous
 
 include /etc/sway/config.d/*

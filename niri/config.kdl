@@ -82,7 +82,7 @@ binds {
     Mod+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
     Mod+Comma { spawn "noctalia" "msg" "settings-toggle"; }
     Ctrl+Alt+T repeat=false { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
-    Mod+Alt+L allow-when-locked=true { spawn "noctalia" "msg" "session" "lock"; }
+    Mod+Alt+L allow-when-locked=true { spawn "noctalia" "msg" "session-lock"; }
     Mod+Shift+S { spawn "noctalia" "msg" "screenshot-region"; }
 
     // Applications
@@ -132,7 +132,7 @@ binds {
     XF86AudioMute allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
     XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia" "msg" "brightness-up"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
-    XF86AudioPlay { spawn "noctalia" "msg" "media" "toggle"; }
-    XF86AudioNext { spawn "noctalia" "msg" "media" "next"; }
-    XF86AudioPrev { spawn "noctalia" "msg" "media" "previous"; }
+    XF86AudioPlay { spawn "noctalia" "msg" "media-toggle"; }
+    XF86AudioNext { spawn "noctalia" "msg" "media-next"; }
+    XF86AudioPrev { spawn "noctalia" "msg" "media-previous"; }
 }

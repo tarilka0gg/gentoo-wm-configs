@@ -22,7 +22,7 @@
     <keybind key="W-s"><action name="Execute" command="noctalia msg panel-toggle launcher" /></keybind>
     <keybind key="W-v"><action name="Execute" command="noctalia msg panel-toggle clipboard" /></keybind>
     <keybind key="W-comma"><action name="Execute" command="noctalia msg settings-toggle" /></keybind>
-    <keybind key="W-A-l"><action name="Execute" command="noctalia msg session lock" /></keybind>
+    <keybind key="W-A-l"><action name="Execute" command="noctalia msg session-lock" /></keybind>
     <keybind key="W-S-s"><action name="Execute" command="noctalia msg screenshot-region" /></keybind>
 
     <!-- Focus -->
@@ -35,8 +35,8 @@
     <keybind key="XF86AudioMute"><action name="Execute" command="noctalia msg volume-mute" /></keybind>
     <keybind key="XF86MonBrightnessUp"><action name="Execute" command="noctalia msg brightness-up" /></keybind>
     <keybind key="XF86MonBrightnessDown"><action name="Execute" command="noctalia msg brightness-down" /></keybind>
-    <keybind key="XF86AudioPlay"><action name="Execute" command="noctalia msg media toggle" /></keybind>
-    <keybind key="XF86AudioNext"><action name="Execute" command="noctalia msg media next" /></keybind>
-    <keybind key="XF86AudioPrev"><action name="Execute" command="noctalia msg media previous" /></keybind>
+    <keybind key="XF86AudioPlay"><action name="Execute" command="noctalia msg media-toggle" /></keybind>
+    <keybind key="XF86AudioNext"><action name="Execute" command="noctalia msg media-next" /></keybind>
+    <keybind key="XF86AudioPrev"><action name="Execute" command="noctalia msg media-previous" /></keybind>
   </keyboard>
 </labwc_config>
